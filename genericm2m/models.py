@@ -201,12 +201,12 @@ class BaseGFKRelatedObject(models.Model):
     """
     # SOURCE OBJECT:
     parent_type = models.ForeignKey(ContentType, related_name="child_%(class)s")
-    parent_id = models.IntegerField(db_index=True)
+    parent_id = models.CharField(max_length=255, db_index=True)
     parent = GenericForeignKey(ct_field="parent_type", fk_field="parent_id")
 
     # ACTUAL RELATED OBJECT:
     object_type = models.ForeignKey(ContentType, related_name="related_%(class)s")
-    object_id = models.IntegerField(db_index=True)
+    object_id = models.CharField(max_length=255, db_index=True)
     object = GenericForeignKey(ct_field="object_type", fk_field="object_id")
 
     class Meta:
